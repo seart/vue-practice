@@ -1,12 +1,29 @@
 <script setup lang="ts">
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, onMounted, onUnmounted } from 'vue'
 
 const count = ref(1)
 
-onMounted(() => {
-  setInterval(() => {
+let timere: ReturnType<typeof setInterval> | null = null
+
+const stopTimer = () => {
+  if (timere) {
+    clearInterval(timere)
+  }
+}
+
+const startTimer = () => {
+  stopTimer()
+  timere = setInterval(() => {
     count.value += 1
   }, 1000)
+}
+
+onMounted(() => {
+  startTimer()
+})
+
+onUnmounted(() => {
+  stopTimer()
 })
 
 const pageTitle = ref('hello')
@@ -20,6 +37,22 @@ const show = ref(true)
 const hideShow = () => {
   show.value = !show.value
 }
+
+// --------------------------------------------------
+
+const listItem = ref(['apple', 'paer', 'orange'])
+const inputText = ref('')
+const add = () => {
+  if (inputText.value == '') {
+    return
+  }
+  listItem.value.push(inputText.value)
+  inputText.value = ''
+}
+
+const remove = () => {
+  listItem.value.pop()
+}
 </script>
 
 <template>
@@ -29,6 +62,16 @@ const hideShow = () => {
     <span v-if="show">{{ pageTitle }}</span>
     <button v-on:click="inverseTitle">inverse</button>
     <button v-on:click="hideShow">hide/show</button>
+    <div></div>
+
+    <ul>
+      <li v-for="(item, index) in listItem" :key="index">{{ index + 1 }}.{{ item }}</li>
+    </ul>
+    <div>
+      <input type="text" v-model="inputText" />
+      <button v-on:click="add">add</button>
+      <button v-on:click="remove">remove</button>
+    </div>
   </div>
 </template>
 
