@@ -8,13 +8,28 @@ onMounted(() => {
     count.value += 1
   }, 1000)
 })
+
+const pageTitle = ref('hello')
+// 反转字符串
+const inverseTitle = () => {
+  pageTitle.value = pageTitle.value.split('').reverse().join('')
+}
+
+const show = ref(true)
+// 隐藏/显示
+const hideShow = () => {
+  show.value = !show.value
+}
 </script>
 
 <template>
   <div class="custom">
     {{ count }}
+
+    <span v-if="show">{{ pageTitle }}</span>
+    <button v-on:click="inverseTitle">inverse</button>
+    <button v-on:click="hideShow">hide/show</button>
   </div>
-  <button>inverse</button>
 </template>
 
 <style scoped>
