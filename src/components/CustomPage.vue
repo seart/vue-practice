@@ -22,9 +22,9 @@ const helloWorld = ref({
   title: 'hello world',
   num: 100,
 })
-const parentUpdateContent = () => {
-  helloWorld.value.num++
-  helloWorld.value.title = ' emit method call change title and num:' + helloWorld.value.num
+const parentUpdateContent = (params: { num: number, title: string }) => {
+  helloWorld.value.num = params.num
+  helloWorld.value.title = params.title
 }
 </script>
 
@@ -39,7 +39,7 @@ const parentUpdateContent = () => {
 
 
     <!-- emit 进行回调数据传递，父组件监听事件来改变父组件的值 -->
-    <div>emit父组件的值：{{ helloWorld.title }}</div>
-    <EmitTs :helloWorld="helloWorld" @updateContent="parentUpdateContent" />
+    <div>emit父组件的值：{{ helloWorld.title }} -- {{ helloWorld.num }}</div>
+    <EmitTs v-bind:helloWorld="helloWorld" v-on:update:content="parentUpdateContent" />
   </div>
 </template>

@@ -1,15 +1,15 @@
 <script setup lang="ts">
 
-defineProps<{
+const props = defineProps<{
     helloWorld: {
         title: string
         num: number
     }
 }>()
 
-const emit = defineEmits(['updateContent'])
+const emit = defineEmits(['update:content'])
 const subUpdateContent = () => {
-    emit('updateContent')
+    emit('update:content', { num: props.helloWorld.num + 1, title: 'hello world sub chagne ' })
 }
 
 </script>
@@ -17,7 +17,7 @@ const subUpdateContent = () => {
 <template>
 
     <div>
-        emit 子组件 ： {{ helloWorld.title }}
+        emit 子组件 ： {{ helloWorld.title }} -- {{ helloWorld.num }}
         <button @click="subUpdateContent">emit 点击改变父组件的值</button>
     </div>
 
