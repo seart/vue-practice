@@ -5,8 +5,7 @@ import { createPinia } from 'pinia'
 
 import App from './App.vue'
 import router from './router'
-import WorldTs from './components/customComponents/worldTS.vue'
-
+import WorldTs from './components/customComponents/worldTest.vue'
 
 const app = createApp(App)
 app.component('world-ts', WorldTs) // 注册全局组件
