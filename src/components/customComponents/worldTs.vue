@@ -1,18 +1,15 @@
 <script setup lang="ts">
-import { ref, type PropType } from 'vue'
+import { ref } from 'vue'
 
-const props = defineProps({
+const props = defineProps<{
   myWorld: {
-    type: Object as PropType<{
-      firstName: string
-      age: number
-      sex: string
-    }>,
-    required: true,
-  },
-})
-
+    firstName: string
+    age: number
+    sex: string
+  }
+}>()
 const age2 = ref(props.myWorld.age)
+
 </script>
 
 <template>
