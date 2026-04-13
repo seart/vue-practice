@@ -23,6 +23,7 @@ const scopeData = ref({
 
   </SlotTest>
   <hr />
+  <!-- 作用域插槽 -->
   <SlotScopeTest v-bind:scopeData="scopeData" v-slot="{ aa }">
     <span>作用域插槽：{{ aa }} </span>
   </SlotScopeTest>
