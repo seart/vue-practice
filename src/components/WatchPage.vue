@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import { ref, watch, watchEffect } from 'vue';
+import { onBeforeMount, onMounted, onUnmounted, ref, watch, watchEffect } from 'vue';
 
 const inputValue = ref('');
 watch(inputValue, (newValue, oldValue) => {
-    console.log('旧值是:', oldValue, ' 新值是:', newValue);
+  console.log('旧值是:', oldValue, ' 新值是:', newValue);
 })
 
 
 const inputObject = ref({
-    name: 'zhangsan',
-    age: 18
+  name: 'zhangsan',
+  age: 18
 });
 // 下面 2 个监听是分开来的，不会相互影响
 
 // 只针对对象的某个属性进行监听
 watch(() => inputObject.value.name, (newValue, oldValue) => {
-    console.log('旧值是:', oldValue, ' 新值是:', newValue);
+  console.log('旧值是:', oldValue, ' 新值是:', newValue);
 })
 
 // 对整个对象的属性进行监听
@@ -38,20 +38,19 @@ watch(() => inputObject.value.name, (newValue, oldValue) => {
 // })
 
 
-
-
 </script>
 
 
 <template>
 
-    <div>
-        <p>watch监听 输入的内容是: {{ inputValue }}</p>
-        <input v-model="inputValue" placeholder="请输入内容" />
-        <p />
-        <!-- ---------------------------------------------- -->
-        <p>watch监听 输入的对象是: {{ inputObject }}</p>
-        <input v-model="inputObject.name" />
-        <input v-model="inputObject.age" />
-    </div>
+  <div>
+    <p>watch监听 输入的内容是: {{ inputValue }}</p>
+    <input v-model="inputValue" placeholder="请输入内容" />
+    <p />
+    <!-- ---------------------------------------------- -->
+    <p>watch监听 输入的对象是: {{ inputObject }}</p>
+    <input v-model="inputObject.name" />
+    <input v-model="inputObject.age" />
+  </div>
+  <hr />
 </template>
