@@ -27,4 +27,5 @@ const newList = computed(() => {
       </li>
     </ul>
   </div>
+  <hr />
 </template>
