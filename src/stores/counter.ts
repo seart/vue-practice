@@ -11,11 +11,19 @@ export const useCounterStore = defineStore('counter', () => {
 
   const name = ref('')
 
-  function updateName() {
-    axios.get('/api/testdata').then((response) => {
-      const newName = response.data.data
-      name.value = newName
+  async function updateName() {
+    const axiosInstance = axios.create({
+      timeout: 2000, // 设置请求超时时间为2秒
+      baseURL: '/api', // 设置基础URL
     })
+    try {
+      await axiosInstance.get('/testdata').then((response) => {
+        const newName = response.data.data
+        name.value = newName
+      })
+    } catch (error) {
+      console.error('请求超时或请求失败', error)
+    }
   }
 
   return { count, doubleCount, increment, name, updateName }
