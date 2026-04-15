@@ -1,5 +1,6 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+import axios from 'axios'
 
 export const useCounterStore = defineStore('counter', () => {
   const count = ref(0)
@@ -10,8 +11,11 @@ export const useCounterStore = defineStore('counter', () => {
 
   const name = ref('')
 
-  function updateName(newName: string) {
-    name.value = newName
+  function updateName() {
+    axios.get('/api/testdata').then((response) => {
+      const newName = response.data.data
+      name.value = newName
+    })
   }
 
   return { count, doubleCount, increment, name, updateName }

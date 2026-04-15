@@ -13,6 +13,6 @@ const updateName = store.updateName;
   <h1>Pinia Store Example</h1>
   <p>{{ store.count }} -- {{ store.name }}</p>
   <button @click="incrementCount">Increment Count</button>
-  <button @click="updateName('Updated Counter Store')">Update Store Name</button>
+  <button @click="updateName">Update Store Name</button>
 
 </template>
